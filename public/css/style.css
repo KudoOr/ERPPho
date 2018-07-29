@@ -1,0 +1,19 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+#container{
+    width: 1200px;
+    height: 700px;
+
+}
+#body{
+    background-color: aqua;
+    height: 660px;
+    
+}
+#footer{
+    background-color: blue;
+    height: 40px;
+    
+}

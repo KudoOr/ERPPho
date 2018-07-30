@@ -22,8 +22,15 @@ body{
 #header{
     z-index: 2;
     height: 40px;
-    background-color: black;
+    background-color :orangered;
     position: fixed;
     top: 0;
     width: 1200px;;
+}
+.nav-tabs>li>a {
+    width: 150px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    font-size: 12px;
 }

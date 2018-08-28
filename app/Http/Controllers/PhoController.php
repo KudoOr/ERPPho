@@ -11,4 +11,7 @@ class PhoController extends Controller
 	public function pho(){
 		return view('Pho.list');
 	}
+	public function quanly (){
+		return view('Pho.quanly');
+	}
 }

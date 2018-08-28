@@ -14,6 +14,20 @@
 
 Route::get('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 Route::get('/pho', ['as' => 'pho', 'uses' => 'PhoController@pho']);
+Route::get('/quanly', ['as' => 'quanly', 'uses' => 'PhoController@quanly']);
+Route::get('/categorys/add', 'CategoryController@add');
+Route::post('/categorys/add', 'CategoryController@add');
+Route::get('/categorys/list', 'CategoryController@list');
+Route::get('/categorys/edit/{id}', 'CategoryController@edit');
+Route::post('/categorys/edit/{id}', 'CategoryController@edit');
+Route::get('/categorys/delete/{id}', 'CategoryController@delete');
+
+Route::get('/foods/add', 'FoodsController@add');
+Route::post('/foods/add', 'FoodsController@add');
+Route::get('/foods/list', 'FoodsController@list');
+Route::get('/foods/edit/{id}', 'FoodsController@edit');
+Route::post('/foods/edit/{id}', 'FoodsController@edit');
+Route::get('/foods/delete/{id}', 'FoodsController@delete');
 
 // Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {

@@ -57,6 +57,7 @@ body{
     height: 200px;
     float: left;
     padding-left: 10px;
+    text-align: center;
 }
 #menu1 , #menu2 , #menu3 , #menu4 {
     position: absolute;
@@ -88,7 +89,4 @@ body{
 marquee{
     color: white;
     font-weight: bold;
-}
-td{
-    vertical-align:center;
 }

@@ -22,16 +22,15 @@
     <div id="container">
         <div id="header">
             <ul class="nav nav-tabs">
-                <li class="menu0 active"><a data-toggle="tab" href="#home">Hóa đơn</a></li>
-                <li class="menu1"><a data-toggle="tab" href="#menu1">Phở nước</a></li>
-                <li><a data-toggle="tab" href="#menu2">Đồ thêm</a></li>
-                <li><a data-toggle="tab" href="#menu3">Cơm rang- Phở xào</a></li>
-                <li><a data-toggle="tab" href="#menu4">Đồ uống</a></li>
+                <li data="menu0" class="menu0 active menu-common"><a data-toggle="tab" href="#menu0">Hóa đơn</a></li>
+                @foreach($categories as $cate)
+                    <li data="menu{{$cate->id}}" class="menu{{$cate->id}} menu-common"><a data-toggle="tab" href="#menu{{$cate->id}}">Phở nước</a></li>
+                @endforeach
             </ul>
         </div>
         <div class="tab-content-left">
-            <div id="home" class="tab-pane fade in active">
-                <a class="themhoadon" data-toggle="tab" href="#menu1">
+            <div id="menu0" class="tab-pane fade in active">
+                <a class="themhoadon" data-toggle="tab" data="menu{{$categories[0]->id}}" href="#menu{{$categories[0]->id}}">
                     <div class="item">
                         <div class="panel panel-primary">
                             <div class="panel-heading">Thêm hóa đơn</div>
@@ -43,75 +42,25 @@
                     </div>          
                 </a>
             </div>
-            <div id="menu1" class="tab-pane fade">
-               <div class="pull-left" > 
-                    <div class="item">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">Thêm hóa đơn</div>
-                            <div class="panel-body">
-                                <i class="fa fa-5x fa-money"> </i>
-                                <i class="fa fa-5x fa-money"> </i>
+            @foreach($categories as $cate)
+                <div id="menu{{$cate->id}}" class="tab-pane fade">
+                @foreach($foods as $food)
+                    @if($food->category_id == $cate->id)
+                        <div class="pull-left" > 
+                            <div class="item" style="display:none;">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">{{ $food->title }}</div>
+                                    <div class="panel-body">
+                                        <i class="fa fa-5x fa-money"> </i>
+                                        <i class="fa fa-5x fa-money"> </i>
+                                    </div>
+                                </div> 
                             </div>
-                        </div> 
-                    </div>
-               </div>
-               <div class="pull-left" > 
-                   <div class="item">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">Thêm hóa đơn</div>
-                            <div class="panel-body">
-                                <i class="fa fa-5x fa-money"> </i>
-                                <i class="fa fa-5x fa-money"> </i>
-                            </div>
-                        </div> 
-                    </div>
+                        </div>
+                    @endif
+                @endforeach    
                 </div>
-               <div class="pull-left" > 
-                   <div class="item">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">Thêm hóa đơn</div>
-                            <div class="panel-body">
-                                <i class="fa fa-5x fa-money"> </i>
-                                <i class="fa fa-5x fa-money"> </i>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-               <div class="pull-left" > 
-                   <div class="item">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">Thêm hóa đơn</div>
-                            <div class="panel-body">
-                                <i class="fa fa-5x fa-money"> </i>
-                                <i class="fa fa-5x fa-money"> </i>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-               <div class="pull-left" > 
-                   <div class="item">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">Thêm hóa đơn</div>
-                            <div class="panel-body">
-                                <i class="fa fa-5x fa-money"> </i>
-                                <i class="fa fa-5x fa-money"> </i>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </div>
-            <div id="menu2" class="tab-pane fade">
-                <h3>Menu 2</h3>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-            </div>
-            <div id="menu3" class="tab-pane fade">
-                <h3>Menu 3</h3>
-                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            </div>
-            <div id="menu4" class="tab-pane fade">
-                <h3>Menu 4</h3>
-                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            </div>
+            @endforeach
         </div>
         <div class="content-right">
             <div class="header-right"> 
@@ -135,9 +84,16 @@
     <script>
         $(document).ready(function(){
             $(".themhoadon").on('click',function(){
-                $(".menu1").addClass("active");
+                menu = $(this).attr('data');
+                $('.'+menu).addClass("active");
                 $(".menu0").removeClass("active");
-            })
+                $('#'+menu+ ' .item').css('display','block');
+            });
+            $('.menu-common').on('click',function(){
+                menu = $(this).attr('data');
+                $('.item').css('display','none');
+                $('#'+menu+ ' .item').css('display','block');
+            });
         });
     </script>
 </body>

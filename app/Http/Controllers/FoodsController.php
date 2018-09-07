@@ -91,4 +91,10 @@ class FoodsController extends Controller
 			return redirect('foods/list');
 		}
 	}
+	public function getFoodsById($id){
+	    if(!empty($id)){
+	        $food = DB::table('foods')->where('id', '=', $id)->first();
+	        return json_encode($food);
+	    }
+	}
 }

@@ -28,6 +28,7 @@ Route::get('/foods/list', 'FoodsController@list');
 Route::get('/foods/edit/{id}', 'FoodsController@edit');
 Route::post('/foods/edit/{id}', 'FoodsController@edit');
 Route::get('/foods/delete/{id}', 'FoodsController@delete');
+Route::get('foods/getFoodsById/{id}', 'FoodsController@getFoodsById');
 
 // Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {

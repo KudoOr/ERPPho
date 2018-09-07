@@ -2,7 +2,7 @@ body{
     
 }
 #container{
-    width: 1200px;
+    width: 1400px;
     height: 100vh;
     margin: 0 auto;
     box-shadow: 2px 2px 5px #666;
@@ -16,7 +16,7 @@ body{
 #footer{
     background-color: #FF6600;
     height: 40px;
-    width: 1200px;
+    width: 1400px;
     bottom: 0;
     position: fixed;
     z-index: 2;
@@ -28,7 +28,7 @@ body{
     background-color :#FF6600;
     position: fixed;
     top: 0;
-    width: 1200px;
+    width: 1400px;
 }
 .nav-tabs>li>a {
     width: 150px;
@@ -41,7 +41,7 @@ body{
     float: left;
     position: relative;
     padding-top: 50px;
-    width: 800px;
+    width: 1000px;
 }
 .content-right{
     float: left;
@@ -70,7 +70,7 @@ body{
 .bottom-right{
     bottom: 0;
     height: 40px;
-    background-color: aqua;
+    /*background-color: #eebfff;*/
     text-align: center;
     font-size: 20px;
     font-weight: bold;
@@ -89,4 +89,21 @@ body{
 marquee{
     color: white;
     font-weight: bold;
+}
+.food-right{
+    font-size: 16px;
+    padding: 5px;
+    height: 90vh;
+    overflow: scroll;
+}
+.sum-money-right{
+    font-size: 16px;
+    padding: 1px;
+    font-weight: bold;
+    background-color: white;
+}
+.one-food{
+    background-color: #f0faff;
+    border-bottom: 1px #0b2e13 solid;
+    margin-top: 2px;
 }

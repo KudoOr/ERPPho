@@ -47,7 +47,7 @@
                 @foreach($foods as $food)
                     @if($food->category_id == $cate->id)
                         <div class="pull-left" > 
-                            <div class="item" style="display:none;">
+                            <div class="item" data-food="{{ $food->id }}" style="display:none;">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">{{ $food->title }}</div>
                                     <div class="panel-body">
@@ -75,7 +75,17 @@
                     </div>
                 </div>
             </div>
-            <div class="bottom-right btn btn-primary">Lưu hóa đơn</div>
+            <div class="food-right">
+                <table class="table table-hover">
+                    <tr style="display:none" class="table-food">
+                    </tr>
+                     <tr class="sum-money-right" style="display:none;">
+                        <td style='width:250px;'>Tổng tiền</td>
+                        <td class='sum_money' style='width:100px;' >0</td>
+                        <td><button class='btn btn-small btn-success'>Lưu</button></td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <footer id="footer">
                 <span class="text_info"><marquee>Phở 10 Lý Quốc Sư Cơ Sở 1 : 40 Trần Cung - Cơ Sở 2 : 120 Thành Công.</marquee></span>
@@ -83,6 +93,7 @@
     </div>
     <script>
         $(document).ready(function(){
+        var list_foods = [];
             $(".themhoadon").on('click',function(){
                 menu = $(this).attr('data');
                 $('.'+menu).addClass("active");
@@ -93,6 +104,30 @@
                 menu = $(this).attr('data');
                 $('.item').css('display','none');
                 $('#'+menu+ ' .item').css('display','block');
+            });
+            $('.item').on('click',function(){
+                var sum_price = 0;
+                cate_id = $(this).attr('data-food');
+                if (cate_id !== undefined){
+                    $.ajax({
+                        url: "foods/getFoodsById/"+cate_id,
+                        success:function (res) {
+                            data = JSON.parse(res);
+                            list_foods.push(data);
+                            $(".table-food").after("<tr class='one-food'><td style='width:250px;'>"+ data.title +"</td><td style='width:150px;'>"+ data.price +"</td><td><button class='btn btn-small btn-danger'>Xóa</button></td></tr>");
+                            if(list_foods.length > 0){
+                                for(var i=0; i< list_foods.length; i++){
+                                    sum_price += list_foods[i].price;
+                                }
+                                $('.sum_money').text(sum_price);
+                                $('.sum-money-right').show();
+                            }
+                        },
+                        error:function (data) {
+                            alert('error');
+                        }
+                    });
+                }
             });
         });
     </script>

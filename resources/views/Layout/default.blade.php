@@ -81,8 +81,8 @@
                     </tr>
                      <tr class="sum-money-right" style="display:none;">
                         <td style='width:250px;'>Tổng tiền</td>
-                        <td class='sum_money' style='width:100px;' >0</td>
-                        <td><button class='btn btn-small btn-success'>Lưu</button></td>
+                        <td style='width:100px;'><span class='sum_money'>0</span></td>
+                        <td><button class='btn btn-small btn-success save_bill'>Lưu</button></td>
                     </tr>
                 </table>
             </div>
@@ -113,8 +113,9 @@
                         url: "foods/getFoodsById/"+cate_id,
                         success:function (res) {
                             data = JSON.parse(res);
+                            console.log(data);
                             list_foods.push(data);
-                            $(".table-food").after("<tr class='one-food'><td style='width:250px;'>"+ data.title +"</td><td style='width:150px;'>"+ data.price +"</td><td><button class='btn btn-small btn-danger'>Xóa</button></td></tr>");
+                            $(".table-food").after("<tr class='one-food'><td style='width:250px;'>"+ data.title +"</td><td style='width:150px;'>"+ data.price +"</td><td><button data-id="+data.id+" class='btn btn-small btn-danger delete_food'>Xóa</button></td></tr>");
                             if(list_foods.length > 0){
                                 for(var i=0; i< list_foods.length; i++){
                                     sum_price += list_foods[i].price;
@@ -129,6 +130,25 @@
                     });
                 }
             });
+             $('body').on('click','.delete_food',function(){
+                id_food = $(this).attr("data-id");
+                index = list_foods.findIndex(food => food.id == id_food);
+                list_foods.splice(index,1);
+                $(this).closest ('tr').remove ();
+             });
+             $('.save_bill').on('click',function(){
+                 sum_money = $('.sum_money').text();
+                 $.ajax({
+                     url: "bills/saveData",
+                     data: {data:list_foods,sum_money:sum_money},
+                     method: 'POST',
+                     success:function (res) {
+                     },
+                     error:function (data) {
+                         alert('error');
+                     }
+                 });
+             });
         });
     </script>
 </body>

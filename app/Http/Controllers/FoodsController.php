@@ -97,4 +97,7 @@ class FoodsController extends Controller
 	        return json_encode($food);
 	    }
 	}
+	public function saveData(Request $request){
+	    dd(Input::all());
+	}
 }

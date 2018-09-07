@@ -29,6 +29,8 @@ Route::get('/foods/edit/{id}', 'FoodsController@edit');
 Route::post('/foods/edit/{id}', 'FoodsController@edit');
 Route::get('/foods/delete/{id}', 'FoodsController@delete');
 Route::get('foods/getFoodsById/{id}', 'FoodsController@getFoodsById');
+Route::post('bills/saveData', 'FoodsController@saveData');
+Route::get('bills/saveData', 'FoodsController@saveData');
 
 // Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {

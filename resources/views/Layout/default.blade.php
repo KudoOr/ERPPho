@@ -10,13 +10,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	<meta content="" name="description"/>
-	<meta content="" name="author"/>
 	
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href={{ asset("public/css/bootstrap.min.css") }} />
     <link rel="stylesheet" href={{ asset("public/css/style.css") }} />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{ asset("public/js/jquery.min.js") }}"></script>
+    <script src="{{ asset("public/js/bootstrap.min.js") }}"></script>
 </head>
 <body>
     <div id="container">
@@ -35,8 +33,7 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading">Thêm hóa đơn</div>
                             <div class="panel-body">
-                                <i class="fa fa-5x fa-money"> </i>
-                                <i class="fa fa-5x fa-money"> </i>
+                                <img width="100%" height="100%" src="{{ asset("public/img/bill.png") }}"/>
                             </div>
                         </div> 
                     </div>          
@@ -51,8 +48,8 @@
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">{{ $food->title }}</div>
                                     <div class="panel-body">
-                                        <i class="fa fa-5x fa-money"> </i>
-                                        <i class="fa fa-5x fa-money"> </i>
+                                        <p>Giá bán</p>
+                                        <p>{{ $food->price }}</p>
                                     </div>
                                 </div> 
                             </div>
@@ -67,8 +64,8 @@
                 <div class="chon-ban">
                     <div class="form-group">
                         <select class="form-control" id="chonban" name="chonban">
-                            <option value="" >Chọn bàn</option>
-                            @for($i = 0;$i<=30;$i++)
+                            <option value="0" >Chọn bàn</option>
+                            @for($i = 1;$i<=30;$i++)
                                 <option value={{ $i }}>Bàn số {{ $i }}</option>
                             @endfor
                         </select>
@@ -131,18 +128,35 @@
                 }
             });
              $('body').on('click','.delete_food',function(){
+                sum_price = 0;
                 id_food = $(this).attr("data-id");
                 index = list_foods.findIndex(food => food.id == id_food);
                 list_foods.splice(index,1);
                 $(this).closest ('tr').remove ();
+                if(list_foods.length > 0){
+                    for(var i=0; i< list_foods.length; i++){
+                        sum_price += list_foods[i].price;
+                    }
+                }else{
+                    $('.sum-money-right').hide();
+                }
+                $('.sum_money').text(sum_price);
              });
              $('.save_bill').on('click',function(){
-                 sum_money = $('.sum_money').text();
+                sum_price = $('.sum_money').text();
+                number_table = $('#chonban').val();
                  $.ajax({
                      url: "bills/saveData",
-                     data: {data:list_foods,sum_money:sum_money},
+                     data: {data:list_foods,sum_price:sum_price,number_table:number_table},
                      method: 'POST',
                      success:function (res) {
+                         data = JSON.parse(res);
+                         if(data.code == 200){
+                            list_foods=[];
+                            $('.sum_money').text(0);
+                            $('.sum-money-right').hide();
+                            $('.one-food').remove ();
+                         }
                      },
                      error:function (data) {
                          alert('error');

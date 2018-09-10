@@ -90,6 +90,19 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li><a><i class="fa fa-briefcase"></i>Quản lý tái chín<span
+                                            class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li>
+                                        <a href="{{URL::to('/')}}/materials/add">Thêm đồ mua</a>
+                                    </li>
+                                    <li>
+                                    <a href="{{URL::to('/')}}/materials/list">Danh sách </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href='pho'><i class="fa fa-long-arrow-right"></i>Sang trang hóa đơn</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

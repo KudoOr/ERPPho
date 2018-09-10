@@ -10,10 +10,25 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-09-06 22:09:41
+Date: 2018-09-10 21:54:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for bills
+-- ----------------------------
+DROP TABLE IF EXISTS `bills`;
+CREATE TABLE `bills` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sum_price` varchar(255) NOT NULL,
+  `id_foods` varchar(255) NOT NULL,
+  `number_table` int(11) DEFAULT NULL,
+  `level` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for categories
@@ -27,12 +42,6 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of categories
--- ----------------------------
-INSERT INTO `categories` VALUES ('2', 'Phở nước', 'cac mon liên quán dến cơm rang', '2018-08-29 21:11:17', '2018-08-29 21:11:17');
-INSERT INTO `categories` VALUES ('3', 'Cơm rang - phở xào', 'Các món cơm', null, null);
 
 -- ----------------------------
 -- Table structure for foods
@@ -51,7 +60,30 @@ CREATE TABLE `foods` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of foods
+-- Table structure for materials
 -- ----------------------------
-INSERT INTO `foods` VALUES ('4', 'Cơm rang dưa bò', '3', '45000', '/public/uploads/img/fdsfds.PNG', 'fdsf', '2018-08-28 21:09:35', '2018-08-28 21:09:35');
-INSERT INTO `foods` VALUES ('5', 'Phở tái chín', '2', '45000', '/public/uploads/img/com-rang-thap-cam.PNG', 'cơm thập cẩm', '2018-08-29 21:11:50', '2018-08-29 21:11:50');
+DROP TABLE IF EXISTS `materials`;
+CREATE TABLE `materials` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `weigh_before` varchar(32) NOT NULL,
+  `weigh_after` varchar(32) NOT NULL,
+  `percen` varchar(32) NOT NULL,
+  `created_at` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class UserController extends Controller
 {
@@ -13,7 +14,7 @@ class UserController extends Controller
 			$input = Input::all();
 			if (Auth::attempt(['email' => $input['email'], 'password' => $input['password']])) {
 				// The user is active, not suspended, and exists.
-				return redirect('/');
+				return redirect('/quanly')->cookie('isLogin', true, 43200);
 			}else{
 				\Session::flash('error','Sai email hoặc password');
 			}
@@ -24,9 +25,10 @@ class UserController extends Controller
 	public function creatUser(){
 		$array = array(
 			'name' =>'admin',
-			'email' =>'chatbot@chatbot.com',
-			'password' => Hash::make('Chatbot@123')
+			'email' =>'pholyquocsu@pholyquocsu.com',
+                'password' => Hash::make('pholyquocsu@123')
 		);
 		DB::table('users')->insert($array);
+		echo "success";
 	}
 }

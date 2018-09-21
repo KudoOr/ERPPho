@@ -90,4 +90,8 @@ class MaterialsController extends Controller
 	public function saveData(Request $request){
 	    dd(Input::all());
 	}
+	public function day(){
+	    return view("Revenue.day");
+	}
+
 }

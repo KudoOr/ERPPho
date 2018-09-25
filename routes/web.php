@@ -36,5 +36,5 @@ Route::get('/', ['as' => '/', 'uses' => 'PhoController@pho']);
 Route::get('/materials/add', 'MaterialsController@add');
 Route::post('/materials/add', 'MaterialsController@add');
 Route::get('/materials/list', 'MaterialsController@list');
-Route::get('/revenue/day', 'doanhthungay@day');
-Route::get('/doanhthungay', 'doanhthungay@doanhthungay');
+Route::get('/revenue/day', 'BillsController@day');
+Route::get('/doanhthungay', 'BillsController@doanhthungay');

@@ -50,4 +50,11 @@ class BillsController extends Controller
 					->first();	
 		return view("Bill.doanhthungay",['bills'=>$bills,'sum_doanhthu'=>$sum_doanhthu]);
 	}
+	public function day(){
+		$revenue_days = DB::table('revenue_days')
+                ->where('day','>',date("Y-m-01"))
+                ->where('day','<',date("Y-m-t"))
+                ->get();
+	    return view("Revenue.day",['revenue_days' => $revenue_days]);
+	}
 }

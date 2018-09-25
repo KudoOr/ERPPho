@@ -14,7 +14,6 @@ Route::get('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 Route::get('/creatUser', ['as' => 'creatUser', 'uses' => 'UserController@creatUser']);
 
-
 Route::get('/pho', ['as' => 'pho', 'uses' => 'PhoController@pho']);
 Route::get('/quanly', ['as' => 'quanly', 'uses' => 'PhoController@quanly']);
 Route::get('/categorys/add', 'CategoryController@add');
@@ -37,4 +36,5 @@ Route::get('/', ['as' => '/', 'uses' => 'PhoController@pho']);
 Route::get('/materials/add', 'MaterialsController@add');
 Route::post('/materials/add', 'MaterialsController@add');
 Route::get('/materials/list', 'MaterialsController@list');
-Route::get('/doanhthungay', 'BillsController@doanhthungay');
+Route::get('/revenue/day', 'doanhthungay@day');
+Route::get('/doanhthungay', 'doanhthungay@doanhthungay');

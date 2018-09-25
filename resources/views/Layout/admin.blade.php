@@ -106,8 +106,7 @@
                                             class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href='{{URL::to('/')}}/doanhthungay'><i class="fa fa-money"></i>Doanh thu hôm nay</a></li>
-                                    <li><a href='{{URL::to('/')}}/doanhthutuan'><i class="fa fa-money"></i>Doanh thu tuần</a></li>
-                                    <li><a href='{{URL::to('/')}}/doanhthuthang'><i class="fa fa-money"></i>Doanh thu tháng</a></li>
+                                    <li><a href='{{URL::to('/')}}/revenue/month'><i class="fa fa-money"></i>Doanh thu tháng nay</a></li>
                                 </ul>
                             </li>
                             

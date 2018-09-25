@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        'App\Console\Commands\RevenueByDay'
     ];
 
     /**
@@ -24,8 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $file = 'command1_output.log';
+        $schedule->command('command:name')
+        ->hourly()
+        ->sendOutputTo($file);
     }
 
     /**

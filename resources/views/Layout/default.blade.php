@@ -38,6 +38,17 @@
                         </div> 
                     </div>          
                 </a>
+				<div class="themhoadon" data-toggle="tab" data="menu{{$categories[0]->id}}" href="#menu{{$categories[0]->id}}">
+                    <div class="item">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Hoá đơn hôm nay</div>
+                            <div class="panel-body">
+							<p></p>
+							<p style="font-size:30px;font-weight:bold;margin-top:10px;" >{{ $bill_count }}</p>
+                            </div>
+                        </div> 
+                    </div>          
+                </div>
             </div>
             @foreach($categories as $cate)
                 <div id="menu{{$cate->id}}" class="tab-pane fade">
@@ -48,8 +59,8 @@
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">{{ $food->title }}</div>
                                     <div class="panel-body">
-                                        <p>Giá bán</p>
-                                        <p>{{ $food->price }}</p>
+                                        <p style="font-weight:bold;">Giá bán</p>
+                                        <p style="font-size:20px;">{{ $food->price }} VND</p>
                                     </div>
                                 </div> 
                             </div>

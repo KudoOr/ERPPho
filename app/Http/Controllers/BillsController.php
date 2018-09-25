@@ -23,7 +23,8 @@ class BillsController extends Controller
 				[
 					'sum_price' => $sum_price,
 					'number_table' => $number_table,
-					'id_foods' => $id_food
+					'id_foods' => $id_food,
+					'created_at'=>date("Y-m-d H:i:s")
 				]
 			);
 			return json_encode(array(
@@ -36,5 +37,17 @@ class BillsController extends Controller
 				'message'=> $e->getMessage()
 			));
 		}
+	}
+	public function doanhthungay(){
+		$bills = DB::table('bills')
+                ->where('created_at','>',date("Y-m-d 00:00:00"))
+                ->where('created_at','<',date("Y-m-d 23:59:59"))
+                ->paginate(10);
+		$sum_doanhthu = DB::table('bills')
+					->select(DB::raw('sum(sum_price) as sum_doanhthu'))
+					->where('created_at','>',date("Y-m-d 00:00:00"))
+					->where('created_at','<',date("Y-m-d 23:59:59"))
+					->first();	
+		return view("Bill.doanhthungay",['bills'=>$bills,'sum_doanhthu'=>$sum_doanhthu]);
 	}
 }

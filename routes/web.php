@@ -14,9 +14,6 @@ Route::get('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 Route::get('/creatUser', ['as' => 'creatUser', 'uses' => 'UserController@creatUser']);
 
-if(!isset($_COOKIE['isLogin']) && (url()->current() !=  'http://localhost/ERPPho/login' && url()->current() !=  'http://localhost/ERPPho/creatUser' )){
-    header('Location:login');die;
-}
 
 Route::get('/pho', ['as' => 'pho', 'uses' => 'PhoController@pho']);
 Route::get('/quanly', ['as' => 'quanly', 'uses' => 'PhoController@quanly']);
@@ -40,3 +37,4 @@ Route::get('/', ['as' => '/', 'uses' => 'PhoController@pho']);
 Route::get('/materials/add', 'MaterialsController@add');
 Route::post('/materials/add', 'MaterialsController@add');
 Route::get('/materials/list', 'MaterialsController@list');
+Route::get('/doanhthungay', 'BillsController@doanhthungay');

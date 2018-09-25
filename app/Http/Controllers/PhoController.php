@@ -13,7 +13,11 @@ class PhoController extends Controller
 	public function pho(){
 		$categories =Category::all();
 		$foods =Food::all();
-		return view('Pho.list',['categories'=>$categories,'foods'=>$foods]);
+		$bill_count = DB::table('bills')
+                ->where('created_at','>',date("Y-m-d 00:00:00"))
+                ->where('created_at','<',date("Y-m-d 23:59:59"))
+                ->count();
+		return view('Pho.list',['categories'=>$categories,'foods'=>$foods,'bill_count'=>$bill_count]);
 	}
 	public function quanly (Request $request){
 		return view('Pho.quanly');

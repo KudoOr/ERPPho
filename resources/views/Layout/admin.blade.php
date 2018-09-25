@@ -101,8 +101,16 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href='pho'><i class="fa fa-long-arrow-right"></i>Sang trang hóa đơn</a>
+                            <li><a href='{{URL::to('/')}}/pho'><i class="fa fa-long-arrow-right"></i>Sang trang hóa đơn</a>
+							 <li><a><i class="fa fa-money"></i>Doanh thu<span
+                                            class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href='{{URL::to('/')}}/doanhthungay'><i class="fa fa-money"></i>Doanh thu hôm nay</a></li>
+                                    <li><a href='{{URL::to('/')}}/doanhthutuan'><i class="fa fa-money"></i>Doanh thu tuần</a></li>
+                                    <li><a href='{{URL::to('/')}}/doanhthuthang'><i class="fa fa-money"></i>Doanh thu tháng</a></li>
+                                </ul>
                             </li>
+                            
                         </ul>
                     </div>
                 </div>
